@@ -1,0 +1,13 @@
+{
+  "name": "database_system_design",
+  "version": "1.0.0",
+  "description": "database system design for 10M+ users",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": "https://github.com/MinhajSadik/Database_System_Design",
+  "author": "MinhajSadik",
+  "license": "MIT"
+}
