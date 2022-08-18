@@ -1,2 +1,3 @@
 # Database_System_Design
-database, MongoDB
+
+database, MongoDB, Redis
