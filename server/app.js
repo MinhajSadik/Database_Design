@@ -29,6 +29,10 @@ await redisClient.connect();
 // Connect to MongoDB
 connectDB();
 
+app.all("/", (req, res) => {
+  res.send(`System Desing API Viewer`);
+});
+
 // Initialize routes
 import usersRouter from "./routes/usersRoute.js";
 app.use("/api/users", usersRouter);
