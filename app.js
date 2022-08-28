@@ -29,7 +29,7 @@ await redisClient.connect();
 // Connect to MongoDB
 connectDB();
 
-app.all("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send(`System Desing API Viewer`);
 });
 
