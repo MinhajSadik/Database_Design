@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 // import error from "http-errors";
 import morgan from "morgan";
-// import connectDB from "./DB/mdb.js";
+import connectDB from "./DB/mdb.js";
 import errorMiddleware from "./middlewares/errors.js";
 import worker from "./utils/helpers/serverWorker.js";
 dotenv.config();
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Connect to MongoDB
-// connectDB();
+connectDB();
 
 //express instance working
 app.get("/", (req, res) => {
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 // Initialize routes
 import usersRouter from "./routes/usersRoute.js";
-app.use("/api/users", usersRouter);
+app.use("/api/user", usersRouter);
 
 app.use(errorMiddleware);
 

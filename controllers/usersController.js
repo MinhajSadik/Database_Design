@@ -29,7 +29,8 @@ const usersController = {
   getUsers: async (req, res) => {
     try {
       const users = await usersModel.find({});
-      return res.status(200).json(users);
+      res.status(200).json(users);
+      // worker.cluster.worker.kill();
     } catch (error) {
       console.log(error);
     }
