@@ -4,7 +4,7 @@ import express from "express";
 import morgan from "morgan";
 // import connectDB from "./DB/mdb.js";
 import errorMiddleware from "./middlewares/errors.js";
-import serverWorker from "./utils/helpers/serverWorker.js";
+import worker from "./utils/helpers/serverWorker.js";
 dotenv.config();
 
 // Initialize express app and middleware
@@ -17,9 +17,10 @@ app.use(morgan("dev"));
 // Connect to MongoDB
 // connectDB();
 
+//express instance working
 app.get("/", (req, res) => {
   res.send(`System Desing API Viewer`);
-  serverWorker.cluster.worker.kill();
+  worker.cluster.worker.kill();
 });
 
 // Initialize routes
@@ -28,8 +29,8 @@ app.use("/api/users", usersRouter);
 
 app.use(errorMiddleware);
 
-if (serverWorker.cluster.isPrimary) {
-  serverWorker.start();
+if (worker.cluster.isPrimary) {
+  worker.start();
 } else {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT} & PID ${process.pid}`);

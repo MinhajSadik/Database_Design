@@ -1,11 +1,11 @@
-import cluster from "cluster";
-import os from "os";
+import cluster from "node:cluster";
+import { cpus } from "node:os";
 
-const numOfCPU = os.cpus().length;
+const numOfCPU = cpus().length;
 
-const serverWorker = {
+const worker = {
   cluster: cluster,
-  os: os,
+  os: cpus.os,
   start: async () => {
     for (let i = 0; i < numOfCPU; i++) {
       cluster.fork();
@@ -17,4 +17,4 @@ const serverWorker = {
   },
 };
 
-export default serverWorker;
+export default worker;
