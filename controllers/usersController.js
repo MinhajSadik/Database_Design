@@ -1,9 +1,10 @@
 import usersModel from "../models/usersModel.js";
+import worker from "../utils/helpers/serverWorker.js";
 
 const usersController = {
-  // POST /api/users
+  // POST /api/user
   createUser: async (req, res) => {
-    const { firstName, lastName, email, country, gender, devices } = req.body;
+    const { name, email, password } = req.body;
     try {
       const user = await usersModel.findOne({ email });
       if (user) {
@@ -12,14 +13,12 @@ const usersController = {
         });
       }
       const newUser = await usersModel.create({
-        firstName,
-        lastName,
+        name,
         email,
-        country,
-        gender,
-        devices,
+        password,
       });
 
+      worker.cluster.worker.kill();
       return res.status(201).json(newUser);
     } catch (error) {
       console.log(error);
@@ -29,8 +28,8 @@ const usersController = {
   getUsers: async (req, res) => {
     try {
       const users = await usersModel.find({});
-      res.status(200).json(users);
       // worker.cluster.worker.kill();
+      return res.status(200).json(users);
     } catch (error) {
       console.log(error);
     }
