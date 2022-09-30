@@ -27,6 +27,12 @@ app.get("/", (req, res) => {
 import usersRouter from "./routes/usersRoute.js";
 app.use("/api/user", usersRouter);
 
+app.get("*", function (req, res) {
+  res.status(404).send({
+    message: "There are no similar route!",
+  });
+});
+
 app.use(errorMiddleware);
 
 if (worker.cluster.isPrimary) {
