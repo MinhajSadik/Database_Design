@@ -15,7 +15,7 @@ const connectDB = async () => {
 
   try {
     mongoose.connect(DB_URL, options);
-    console.log(`Databaase Connected with url: ${DB_URL}`);
+    console.log(`Databaase Connected with url: ${Local_Url}`);
   } catch (error) {
     console.error(error.message);
     process.exit(1);
@@ -23,5 +23,3 @@ const connectDB = async () => {
 };
 
 export default connectDB;
-
-
