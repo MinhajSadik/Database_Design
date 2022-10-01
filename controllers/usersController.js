@@ -36,12 +36,12 @@ const usersController = {
         });
       }
 
-      const user = UserModel.create({
-        email,
-        password,
-      });
+      // const user = UserModel.create({
+      //   email,
+      //   password,
+      // });
 
-      console.log(user);
+      console.log(existedUser);
     } catch (error) {
       return res.status(500).json({
         status: false,
