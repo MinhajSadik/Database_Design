@@ -10,7 +10,7 @@ class JwtService {
 
   login = (data) => {
     return api.post(this.jwtConfig.login, data, {
-      //   withCredentials: true,
+    //   withCredentials: true,
     });
   };
 }
