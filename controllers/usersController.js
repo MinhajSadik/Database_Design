@@ -1,18 +1,18 @@
-import usersModel from "../models/usersModel.js";
+import UserModel from "../models/usersModel.js";
 import worker from "../utils/helpers/serverWorker.js";
 
 const usersController = {
   // POST /api/user
-  createUser: async (req, res) => {
+  registerUser: async (req, res, next) => {
     const { name, email, password } = req.body;
     try {
-      const user = await usersModel.findOne({ email });
+      const user = await UserModel.findOne({ email });
       if (user) {
         return res.status(400).json({
           message: "User already exists",
         });
       }
-      const newUser = await usersModel.create({
+      const newUser = await UserModel.create({
         name,
         email,
         password,
@@ -22,6 +22,31 @@ const usersController = {
       return res.status(201).json(newUser);
     } catch (error) {
       console.log(error);
+    }
+  },
+
+  loginUser: async (req, res, next) => {
+    const { email, password } = req.body;
+    try {
+      const existedUser = UserModel.findOne({ email });
+      if (existedUser) {
+        return res.status(400).json({
+          status: false,
+          message: "User already exist",
+        });
+      }
+
+      const user = UserModel.create({
+        email,
+        password,
+      });
+
+      console.log(user);
+    } catch (error) {
+      return res.status(500).json({
+        status: false,
+        message: "There are an server side error" + error.message,
+      });
     }
   },
   // GET /api/users
