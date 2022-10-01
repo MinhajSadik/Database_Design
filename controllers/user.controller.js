@@ -41,7 +41,7 @@ const usersController = {
       //   password,
       // });
 
-      console.log(existedUser);
+      // console.log(existedUser);
     } catch (error) {
       return res.status(500).json({
         status: false,
