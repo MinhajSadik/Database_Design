@@ -29,10 +29,10 @@ const usersController = {
     const { email, password } = req.body;
     try {
       const existedUser = UserModel.findOne({ email });
-      if (existedUser) {
-        return res.status(400).json({
+      if (!existedUser) {
+        return res.status(302).json({
           status: false,
-          message: "User already exist",
+          message: "Could not found expected user",
         });
       }
 
