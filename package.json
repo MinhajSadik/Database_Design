@@ -4,6 +4,7 @@
   "description": "database system design for 10M+ users",
   "main": "app.js",
   "type": "module",
+  "proxy": "https://database-design-minhajsadik.vercel.app",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"

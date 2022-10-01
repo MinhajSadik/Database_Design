@@ -1,4 +1,4 @@
-import api from "./API.js";
+import api from "./api.js";
 import endPoint from "./jwtConfig";
 
 class JwtService {
@@ -10,7 +10,7 @@ class JwtService {
 
   login = (data) => {
     return api.post(this.jwtConfig.login, data, {
-    //   withCredentials: true,
+      //   withCredentials: true,
     });
   };
 }
