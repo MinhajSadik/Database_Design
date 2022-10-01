@@ -9,7 +9,7 @@ class JwtService {
   constructor() {}
 
   login = (data) => {
-    return api.post(this.jwtConfig.login, {
+    return api.post(this.jwtConfig.login, data, {
       withCredentials: true,
     });
   };

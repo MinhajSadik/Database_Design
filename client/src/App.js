@@ -4,7 +4,6 @@ import useJwt from "./Jwt/useJwt";
 
 function App() {
   const [state, setState] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -21,24 +20,17 @@ function App() {
   const handleLogin = async () => {
     try {
       const result = await useJwt.login(state);
+      console.log(result);
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const { name, email, password } = state;
+  const { email, password } = state;
   return (
     <div className="App">
       <header className="App-header">
         <h2> Authentication</h2>
-
-        <input
-          className="bg-black text-white my-2"
-          onChange={onInputChange}
-          value={name}
-          type="name"
-          name="name"
-        />
         <input
           className="bg-black text-white my-2"
           onChange={onInputChange}
