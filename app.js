@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 // Initialize routes
-import usersRouter from "./routes/usersRoute.js";
+import usersRouter from "./routes/user.route.js";
 app.use("/api/user", usersRouter);
 
 app.get("*", function (req, res) {

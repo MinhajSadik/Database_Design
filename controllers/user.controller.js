@@ -1,4 +1,4 @@
-import UserModel from "../models/usersModel.js";
+import UserModel from "../models/user.model.js";
 import worker from "../utils/helpers/serverWorker.js";
 
 const usersController = {
@@ -28,7 +28,7 @@ const usersController = {
   loginUser: async (req, res, next) => {
     const { email, password } = req.body;
     try {
-      const existedUser = UserModel.findOne({ email });
+      const existedUser = await UserModel.findOne({ email });
       if (!existedUser) {
         return res.status(302).json({
           status: false,
