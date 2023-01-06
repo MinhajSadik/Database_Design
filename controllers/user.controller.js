@@ -41,7 +41,7 @@ const usersController = {
       //   password,
       // });
 
-      // console.log(existedUser);
+      console.log(existedUser);
     } catch (error) {
       return res.status(500).json({
         status: false,
@@ -52,11 +52,13 @@ const usersController = {
   // GET /api/users
   getUsers: async (req, res) => {
     try {
-      const users = await usersModel.find({});
+      const users = await UserModel.find({});
       // worker.cluster.worker.kill();
-      return res.status(200).json(users);
+      res.status(200).json(users);
     } catch (error) {
-      console.log(error);
+      return res.status(500).json({
+        message: error.message
+      })
     }
   },
 };

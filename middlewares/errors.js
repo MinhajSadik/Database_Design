@@ -32,12 +32,20 @@ const errorHandler = (err, req, res, next) => {
     const message = `Could Not Found expected route`;
     err = new ErrorMessage(message, 404);
   }
+
   if (err.name === "ValidatorError") {
     const message = `Validate your route path`;
     err = new ErrorMessage(message, 500);
   }
 
-  return res.status(err.statusCode).json({
+  if (err.name === "ReferenceError") {
+    const message = `You have an ReferenceError`;
+    err = new ErrorMessage(message, 500);
+  }
+
+
+
+  return res.status(err.status).json({
     success: false,
     message: err.message,
   });
