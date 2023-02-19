@@ -21,7 +21,7 @@ const usersController = {
       worker.cluster.worker.kill();
       return res.status(201).json(newUser);
     } catch (error) {
-      console.log(error);
+      next(error.message)
     }
   },
 
